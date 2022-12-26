@@ -1,0 +1,58 @@
+{% extends "layout.html" %}
+
+{% block title %} URL Not Exist {% endblock %}
+
+{% block link %} static/MultiTool.icon {% endblock %}
+
+{% block class %} url_shortener {% endblock %}
+
+{% block body %}
+
+<main class="container p-5 my-5 bg-info text-white">
+    {% if error_url_POST %}
+    <div id="button_opacity" class="mb-3">
+        <h1 class="text">An error occurred to generate the URL</h1>
+        <br>
+        <h5 class="text">The URL is not valid, make sure the URL you tried to shorten is correct.</h5>
+        <h5 class="text">Possible errors:</h5>
+        <h5 class="text">Check if the domain is correct</h5>
+        <h5 class="text">Check if the site is online</h5>
+        <h5 class="text">Check the length of the url is not too small</h5>
+        <h5 class="text">Check the address bars and punctuation</h5>
+        <h5 class="text">The URL may have been blocked</h5>
+        <h5 class="text">The url may have been reported</h5>
+        <h5 class="text">Make sure the url does not contain spam</h5>
+        <h1 class="text"><a href="/" target="_self">Try again</a></h1>
+    </div>
+    {% endif %}
+
+    {% if error_url_GET %} 
+        <div id="button_opacity" class="mb-3">
+            <h1 class="text">There was an error accessing the URL</h1>
+            <br>
+            <h5 class="text">The URL is not valid.</h5>
+            <h5 class="text">Possible errors:</h5>
+            <h5 class="text">Check if the site is online</h5>
+            <h5 class="text">Check the address bars and punctuation</h5>
+            <h5 class="text">The URL may have been blocked</h5>
+            <h5 class="text">The url may have been reported</h5>
+            <h5 class="text">Make sure the url does not contain spam</h5>
+            <h1 class="text"><a href="/contact" target="_self">To report a bug</a></h1>
+        </div>       
+        {% endif %}
+        
+        {% if error_message %} 
+        <div id="button_opacity" class="mb-3">
+            <h1 class="text">Your request has been passed to the system and is not accepted</h1>
+            <br>
+            <h5 class="text">Possible errors:</h5>
+            <h5 class="text">Not filling in all fields</h5>
+            <h5 class="text">Incorrect email</h5>
+            <h5 class="text">inappropriate words</h5>
+            <br>
+            <h1 class="text"><a href="/contact" target="_self">Try again</a></h1>
+        </div> 
+        {% endif %}      
+</main>
+
+{% endblock %}

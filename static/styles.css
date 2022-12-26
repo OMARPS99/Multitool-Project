@@ -1,0 +1,177 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.currency {
+    background: url(currency.png);
+    background-repeat : no-repeat;
+    background-attachment: fixed;
+}
+
+.QR {
+    background: url(QR.png);
+    background-repeat : no-repeat;
+    background-attachment: fixed;
+
+}
+
+.caesar {
+    background: url(caesar.png);
+    background-repeat : no-repeat;
+    background-attachment: fixed;
+}
+
+.url_shortener {
+    background: url(url.png);
+    background-repeat : no-repeat;
+    background-attachment: fixed;
+
+}
+
+
+#Exchange {
+    background: rgb(0,212,255);
+    background: radial-gradient(circle, rgba(0,212,255,1) 31%, rgba(9,17,121,1) 85%, rgba(2,0,36,1) 100%);
+    text-align: center;
+}
+
+
+h1 {
+    color: red;
+    text-align: center;
+    text-decoration: none;
+}
+
+a {
+    text-decoration: none;
+    color: red;
+}
+
+main {
+    background: rgb(2,0,36);
+    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 49%, rgba(0,212,255,1) 100%);
+    opacity: 0.8;
+    font-family: "source sans pro", arial;
+    border-radius: 15px 50px 30px;
+}
+
+main div {
+    background: rgb(2,0,36);
+    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 49%, rgba(0,212,255,1) 100%);
+    border-radius: 15px 50px 30px;
+}
+
+.text {
+    text-align: center;
+    /*text-transform: uppercase;*/
+    color: rgb(255, 255, 255);
+    text-shadow: 1px 1px 4px #000000;
+    font-family: "source sans pro", arial;
+
+}
+
+nav {
+    width: 62%;
+    margin: auto;
+    display: flex;
+    align-items: center;
+}
+
+nav ul {
+    flex: 1;
+    padding-right: 40px;
+    list-style-type: none;
+    margin: auto;
+    padding: 0;
+    overflow: hidden;
+}
+
+nav ul li {
+    display: inline-block;
+    list-style: none;
+    margin: 25px 40px 5px 5px;
+
+}
+
+nav ul li a {
+    display: block;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    margin: 10px 5px;
+    color: rgb(247, 238, 238);
+    font-family: "source sans pro", arialve;
+    font-weight: bold;
+}
+
+li a:hover {
+    color: rgb(0,212,255);
+}
+
+#button_opacity {
+    text-align: center;
+    margin: 0 auto;
+    opacity: 1;
+}
+
+#QR {
+    height: 200px;
+    width: 50%;
+    background: white;
+    margin: 25px 50px 75px 100px;
+    padding: 10px;
+    opacity: 0.8;
+
+}
+
+#img {
+    background: white;
+    padding: 10px;
+    margin: 0 auto;
+
+
+}
+
+.closebtn {
+    color: white;
+    font-weight: bold;
+    float: inherit;
+    font-size: 70px;
+    line-height: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.closebtn:hover {
+    color: red;
+}
+
+footer {
+    color: rgb(247, 238, 238);
+    font-family: "source sans pro", arialve;
+    font-weight: bold;
+    background: rgb(2,0,36);
+    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 49%, rgba(0,212,255,1) 100%);
+    width: 50%;
+    padding:10px;
+    margin:auto;
+    text-align: center;
+    height: 65px;
+    position: end;
+    bottom:0;
+    opacity: 0.9;
+    border-radius: 15px 50px 30px;
+}
+
+li {
+    
+    display: inline;
+    
+}
+
+li a {
+    color: #fff;
+    text-decoration: none;
+}
+

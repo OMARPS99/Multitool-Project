@@ -1,0 +1,116 @@
+{% extends "layout.html" %}
+
+{% block title %} Text encryption {% endblock %}
+
+{% block link %} static/MultiTool.icon {% endblock %}
+
+{% block class %} caesar {% endblock %}
+
+{% block body %}
+
+<br>
+<h1 class="text"> Encryption and Decrypt of texts using the Caesar cipher and substitution cipher </h1>
+<main class="container p-5 my-5 bg-info text-white">
+    <form action="/caesar" method="post">
+        <div id="button_opacity" class="mb-3">
+            <div id="button_opacity" class="col p-3 bg-info text-white">
+                <select id="select" class="form-select mx-auto w-auto" name="Encryption_type">
+                    <option disabled selected>Encryption Type</option>
+                        <option value="digital">Digital - Caesar cipher</option>
+                        <option value="letters">Letters - substitution cipher</option>
+                        <option value="digital_decoding">Digital Decoding - Caesar cipher</option>
+                </select>            
+            </div>
+            <input autocomplete="off" autofocus required class="form-control mx-auto w-auto" name="text" type="text" placeholder="Enter the Text or Ciphertext">
+            <br>
+            <input id="key" autocomplete="off" autofocus class="form-control mx-auto w-auto" name="key" type="text" placeholder="Enter the Key">
+            <br>
+            <button  class="btn btn-outline-danger text-white" type="submit">Start</button>
+            
+            <div id="cipher_decrypt">
+                <br>
+                <input id="encryption_options" type="radio" name="cipher" value="cipher">
+                <label for="encryption_options">Cipher</label> 
+                <input id="encryption_options" type="radio" name="cipher" value="dipher">
+                <label for="encryption_options">Decrypt</label> 
+            </div>
+            <br>
+            <br>
+            <h4 id="feedback1"></h4>
+            <br>
+            <h4 id="feedback2"></h4>
+        </div>
+    </form>
+
+        {% if cipher_text %}
+        <div id="button_opacity" class="mb-3">
+            <h3 class="text"> your ciphertext </h3>
+            <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+            <textarea id="cipher" value="{{ cipher_text }}" rows="4" cols="50">{{ cipher_text }}</textarea>
+            <br>
+            <br>
+            <button onclick="myFunction()" id="button_opacity" class="btn btn-outline-danger text-white">Copy Text</button>
+        </div>
+        {% endif %}
+        
+        {% if error %}
+            <div id="button_opacity" class="mb-3">
+                <h2 class="text">&#10071 {{ error }} </h2>
+                <br>
+                <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+            </div>
+        {% endif %}
+        <h6 class="text" style="text-align: left;"><a href="https://en.wikipedia.org/wiki/Caesar_cipher" target="_blank">More about the Caesar cipher</a></h6>
+        <h6 class="text" style="text-align: left;"><a href="https://en.wikipedia.org/wiki/Substitution_cipher" target="_blank">More about the substitution cipher</a></h6>
+</main>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+
+        let key = document.querySelector("#key");
+        let select = document.querySelector("#select");
+        let cipher_decrypt = document.querySelector("#cipher_decrypt");
+        
+        cipher_decrypt.style.display='none';
+        select.addEventListener('click', function() { 
+            if (select.value == "digital") {
+                document.querySelector('#feedback1').innerHTML = '&#9989;  You must enter a text and a numeric key.';
+                document.querySelector('#feedback2').innerHTML = '&#9989;  To decrypt the text with the key, enter the ciphertext and the key preceded by a negative sign (-).';
+                key.style.display='block';
+                cipher_decrypt.style.display='none';
+            }
+
+            else if (select.value == "letters") {
+                document.querySelector('#feedback1').innerHTML = '&#9989;  You must enter text and a key of 26 uppercase or lowercase characters must be entered without repetition.';
+                document.querySelector('#feedback2').innerHTML = '';
+                key.style.display='block';
+                cipher_decrypt.style.display='block';
+            }
+
+            else if (select.value == "digital_decoding") {
+                document.querySelector('#feedback1').innerHTML = '&#9888;  Decryption only if the cipher used was Caesar digital cipher.';
+                document.querySelector('#feedback2').innerHTML = '&#9888;  Text less than 140 characters, 23 words or close to two sentences is difficult to decipher, it depends on the context and the length of the words.';
+                key.style.display='none';
+                cipher_decrypt.style.display='none';
+            }
+
+            else {
+                document.querySelector('#feedback1').innerHTML = '';
+                document.querySelector('#feedback2').innerHTML = '';
+                key.style.display='block';
+                cipher_decrypt.style.display='none';
+            }
+        });
+});
+
+function myFunction() {
+        var copyText = document.getElementById("cipher");
+        copyText.select();
+        copyText.setSelectionRange(0, 99999);
+        navigator.clipboard.writeText(copyText.value);
+        ("Copied the text: " + copyText.value);
+        }
+
+</script>
+
+{% endblock %}

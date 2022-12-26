@@ -1,0 +1,70 @@
+{% extends "layout.html" %}
+
+{% block title %} URL Shortener {% endblock %}
+
+{% block link %} static/MultiTool.icon {% endblock %}
+
+{% block class %} url_shortener {% endblock %}
+
+{% block body %}
+
+<br>
+<h1 class="text"> URL Short </h1>
+<main class="container p-5 my-5 bg-info text-white">
+    <form action="/" method="post">
+        <div id="button_opacity" class="mb-3">
+            <input autocomplete="off" autofocus required class="form-control mx-auto w-auto" name="long_url" type="url" placeholder="Enter the long URL here">
+            <br>
+            <button  class="btn btn-outline-danger text-white" type="submit">Shorten URL</button>
+        </div>
+    </form>
+
+        {% if short_url %}
+        <div id="button_opacity" class="mb-3">
+            
+            <h3>Your link shortener is</h3>
+            <input id="url_short" name="link1" size="40" value="https://multitool-cs50.herokuapp.com/{{ short_url }}" dir="ltr">
+            <br>
+            <br>
+            <button onclick="myFunction()" id="button_opacity" class="btn btn-outline-danger text-white">Copy URL</button>
+            <br>
+            <br>
+            <h3>To try it out, click here</h3>
+            <a href="https://multitool-cs50.herokuapp.com/{{ short_url }}" target="_blank">https://multitool-cs50.herokuapp.com/{{ short_url }}</a>
+            <br>
+            <br>
+            <h3>QR Code for Short Link</h3>
+            <br>
+            <img id="img" src="{{ qrcode( QR_URL , box_size=10) }}">
+            <br>
+            <br>
+            <a  href="{{ qrcode( QR_URL , box_size=10) }}" download><button id="button_opacity" class="btn btn-outline-danger text-white">Download QR</button></a>
+            <br>
+            <br>
+            <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+        </div>
+        {% endif %}
+        
+        {% if error_counter %}
+        <div id="button_opacity" class="mb-3">
+            <h1 class="text">&#10071 Error 500 : The service is not available at the moment. Please report the error code by sending it to the email omarps552@gmile.com</h1>
+            <br>
+            <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+        </div>
+        {% endif %}
+        
+</main>
+
+<script>
+
+    function myFunction() {
+      var copyText = document.getElementById("url_short");
+      copyText.select();
+      copyText.setSelectionRange(0, 99999);
+      navigator.clipboard.writeText(copyText.value);
+      ("Copied the text: " + copyText.value);
+    }
+
+</script>
+
+{% endblock %}

@@ -1,0 +1,38 @@
+{% extends "layout.html" %}
+
+{% block title %} URL Click Counter {% endblock %}
+
+{% block link %} static/MultiTool.icon {% endblock %}
+
+{% block class %} url_shortener {% endblock %}
+
+{% block body %}
+
+<br>
+<h1 class="text"> The number of clicks on your URL </h1>
+<main class="container p-5 my-5 bg-info text-white">
+    <form action="/click_counter" method="post">
+        <div id="button_opacity" class="mb-3">
+            <input autocomplete="off" autofocus required class="form-control mx-auto w-auto" name="short_url" type="url" placeholder="Enter the short URL here">
+            <br>
+            <button  class="btn btn-outline-danger text-white" type="submit">Track Clicks</button>
+        </div>
+    </form>
+    {% if counter %}
+    <div id="button_opacity" class="mb-3">
+        <h1 class="text">Total URL Clicks</h1>
+        <h1 class="text">{{ counter }} : clicks</h1>
+        <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+    </div>
+    {% endif %}
+    
+    {% if error %}
+    <div id="button_opacity" class="mb-3">
+        <h2 class="text">&#10071 {{ error }} </h2>
+        <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+    </div>
+    {% endif %}
+
+</main>
+
+{% endblock %}

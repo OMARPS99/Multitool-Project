@@ -1,0 +1,47 @@
+{% extends "layout.html" %}
+
+{% block title %} QR Code {% endblock %}
+
+{% block link %} static/MultiTool.icon {% endblock %}
+
+{% block class %} QR {% endblock %}
+
+{% block body %}
+
+<br>
+<h1 class="text"> Convert Text and Links to QR Code </h1>
+<main class="container p-5 my-5 bg-info text-white">
+
+    <form action="/QR" method="post">
+        <div id="button_opacity" class="mb-3">
+            <input autocomplete="off" autofocus required class="form-control mx-auto w-auto" name="data" type="text" placeholder="Enter the Text/Link">
+            <br>
+            <button  class="btn btn-outline-danger text-white" type="submit">Start</button>
+        </div>
+    </form>
+
+        {% if data %}
+        <div id="button_opacity" class="mb-3">
+            <h3 class="text"> Your QR Code </h3>
+            <br>
+            <img id="img" src="{{ qrcode( data , box_size=10) }}">
+            <br>
+            <br>
+            <a  href="{{ qrcode( data , box_size=10) }}" download><button id="button_opacity" class="btn btn-outline-danger text-white">Download QR</button></a>
+            <br>
+            <br>
+            <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+        </div>
+        {% endif %}
+
+        {% if error %}
+            <div id="button_opacity" class="mb-3">
+                <h2 class="text">&#10071 {{ error }} </h2>
+                <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+            </div>
+        {% endif %}
+
+
+</main>
+
+{% endblock %}

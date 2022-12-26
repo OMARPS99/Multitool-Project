@@ -1,0 +1,64 @@
+{% extends "layout.html" %}
+
+{% block title %} Currency Converter {% endblock %}
+
+{% block link %} static/MultiTool.icon {% endblock %}
+
+{% block class %} currency {% endblock %}
+
+{% block body %}
+
+<h1 class="text"> Currency Converter </h1>
+<main class="container p-5 my-5 bg-info text-white">
+    <form action="/currency_converter" method="post">
+        <div class="text">
+        <div class="col p-3 bg-info text-white">
+            <select class="form-select mx-auto w-auto" name="from">
+                <option disabled selected>FROM</option>
+                {% for kye in names %}
+                    <option value="{{ kye }}">{{ kye }} - {{ names[kye] }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="col p-3 bg-info text-white">
+            <select class="form-select mx-auto w-auto" name="to">
+                <option disabled selected>TO</option>
+                {% for kye in names %}
+                    <option value="{{ kye }}">{{ kye }} - {{ names[kye] }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="col p-3 bg-info text-white">
+            <input autocomplete="off" autofocus required class="form-control mx-auto w-auto" min="1" name="amount" placeholder="Amount" type="number">
+        </div>
+        <br>
+        <div class="text">
+            <button id="Exchange" class="btn btn-light" type="submit">Exchange</button>
+        </div>
+    </form>
+    {% if result %}
+    <div class="text">
+        <br>
+        {% set temporary_variable = result.amount/result.amount_total %}
+        <h3> ${{ amount }} {{ From }} = </h3>
+        <h3> {{ result.amount_total | usd }} {{ To }}</h3>
+        <br>
+        <h4> 1 {{ From }} = {{ result.to | usd }} {{ To }}</h4>
+        <h4> 1 {{ To }} = {{ temporary_variable | usd }} {{ From }}</h4>
+        <br>
+        <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+    </div>
+    {% endif%}
+
+    {% if error %}
+    <br>
+    <div id="button_opacity" class="mb-3">
+        <h2 class="text">&#10071 {{ error }} </h2>
+        <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+    </div>
+    {% endif %}
+</main>
+
+{% endblock %}

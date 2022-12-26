@@ -1,0 +1,45 @@
+{% extends "layout.html" %}
+
+{% block title %} Contact {% endblock %}
+
+{% block link %} static/MultiTool.icon {% endblock %}
+
+{% block class %} url_shortener {% endblock %}
+
+{% block body %}
+    <h1 class="text" >Contact us</h1>
+    <main class="container p-5 my-5 bg-info text-white">
+        <form action="/contact" method="post">
+            <div id="button_opacity" class="mb-3">
+                <div id="button_opacity" class="col p-3 bg-info text-white">
+                    <select class="form-select mx-auto w-auto" name="country">
+                        <option disabled selected>Country</option>
+                        {% for kye in country %}
+                            <option value="{{ kye }}"> {{ kye }} - {{ country[kye] }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <input autocomplete="off" autofocus required class="form-control mx-auto w-auto" name="name" type="text" placeholder="Name">
+                <br>
+                <input autocomplete="off" autofocus required class="form-control mx-auto w-auto" name="email" type="email" placeholder="Email">
+                <br>
+                <input autocomplete="off" autofocus required class="form-control mx-auto w-auto" name="subject" type="text" placeholder="subject">
+                <br>
+                <textarea required id="cipher" name="message" placeholder="Message"  rows="4" cols="60"></textarea>
+                <br>
+                <h4 style="display: inline;">{{ number1 }} + {{ number2 }} = </h4><input class="form-control mx-auto w-auto" autocomplete="off" autofocus required type="number" name="answer" style="width: 100%; max-width: 100px; display: inline;" placeholder="answer">
+                {% set answer = number1 + number2%}
+                <br>
+                <br>
+                <button name="correct_answer" value="{{answer}}" class="btn btn-outline-danger text-white" type="submit">Send</button>
+            </div>     
+        </form>
+        {% if Success %}
+        <div id="button_opacity" class="mb-3">
+            <h2 class="text">&#9989 Thank you for contacting us, your message will be answered as soon as possible.</h2>
+            <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+        </div>
+        {% endif %}
+    
+    </main>
+{% endblock %}
