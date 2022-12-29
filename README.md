@@ -2,7 +2,7 @@
 ## *A site that gathers important and multifunctional tools and puts them in one place.*
 ### Video  :  [YouTube](https://www.youtube.com/watch?v=VYYc3voCKMM)
 
-### Wibsit :  [Live version](https://omarhassouna.pythonanywhere.com/emji)
+### Websit :  [Live version](https://omarhassouna.pythonanywhere.com/emji)
 
 ****
 
