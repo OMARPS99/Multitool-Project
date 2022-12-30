@@ -22,20 +22,12 @@
     background-attachment: fixed;
 }
 
-.url_shortener {
+.url_shortener, .contact, .url_click_counter {
     background: url(url.png);
     background-repeat : no-repeat;
     background-attachment: fixed;
 
 }
-
-
-#Exchange {
-    background: rgb(0,212,255);
-    background: radial-gradient(circle, rgba(0,212,255,1) 31%, rgba(9,17,121,1) 85%, rgba(2,0,36,1) 100%);
-    text-align: center;
-}
-
 
 h1 {
     color: red;
@@ -67,7 +59,9 @@ main div {
     /*text-transform: uppercase;*/
     color: rgb(255, 255, 255);
     text-shadow: 1px 1px 4px #000000;
-    font-family: "source sans pro", arial;
+    font-family: "source sans pro", arialve;
+    font-weight: bold;
+    font-size: 35px;
 
 }
 
@@ -175,3 +169,14 @@ li a {
     text-decoration: none;
 }
 
+#writing {
+    font-family: "source sans pro", arialve;
+    font-weight: bold;
+    color: rgb(207, 45, 45);
+    font-size: 50px;
+
+}
+.cursor {
+    color: rgb(207, 45, 45);
+    font-size: 50px;
+}
