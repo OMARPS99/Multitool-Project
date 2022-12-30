@@ -16,7 +16,7 @@ function GetNameCountries () {
         CountriesName.appendChild(Element);
         
     }
-};
+}
 
 function GetNameCurrencies () {
     let CurrenciesName = document.querySelectorAll("#CurrenciesName");
@@ -36,7 +36,7 @@ function GetNameCurrencies () {
         let Element2 = Element.cloneNode(true);
         CurrenciesName[1].appendChild(Element2);
     }
-};
+}
 
 function Caesar () {
     let key = document.querySelector("#key");
@@ -108,7 +108,7 @@ switch (Page) {
         CopyText();
         break;
 }
-});
+})
 
 let Text = document.querySelector("#writing");
 let TextArray = ["We care about the customer", "We care about product quality",
@@ -148,4 +148,9 @@ function Erasing() {
 
 setTimeout(Typing, 2000);
 
-  
+let loader = document.getElementById("Page_loader");
+
+window.addEventListener("load", _ => {
+    loader.style.display = "none";
+})
+ 
