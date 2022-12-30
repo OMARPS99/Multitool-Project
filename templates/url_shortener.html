@@ -1,13 +1,12 @@
 {% extends "layout.html" %}
 
-{% block title %} URL Shortener {% endblock %}
+{% block title %}URL Shortener{% endblock %}
 
-{% block link %} static/MultiTool.icon {% endblock %}
+{% block link %}static/MultiTool.icon{% endblock %}
 
-{% block class %} url_shortener {% endblock %}
+{% block class %}url_shortener{% endblock %}
 
 {% block body %}
-
 <br>
 <h1 class="text"> URL Short </h1>
 <main class="container p-5 my-5 bg-info text-white">
@@ -23,10 +22,10 @@
         <div id="button_opacity" class="mb-3">
             
             <h3>Your link shortener is</h3>
-            <input id="url_short" name="link1" size="40" value="https://multitool-cs50.herokuapp.com/{{ short_url }}" dir="ltr">
+            <input id="Text" name="link1" size="40" value="https://multitool-cs50.herokuapp.com/{{ short_url }}" dir="ltr">
             <br>
             <br>
-            <button onclick="myFunction()" id="button_opacity" class="btn btn-outline-danger text-white">Copy URL</button>
+            <button id="CopyButton" class="btn btn-outline-danger text-white">Copy URL</button>
             <br>
             <br>
             <h3>To try it out, click here</h3>
@@ -54,17 +53,4 @@
         {% endif %}
         
 </main>
-
-<script>
-
-    function myFunction() {
-      var copyText = document.getElementById("url_short");
-      copyText.select();
-      copyText.setSelectionRange(0, 99999);
-      navigator.clipboard.writeText(copyText.value);
-      ("Copied the text: " + copyText.value);
-    }
-
-</script>
-
 {% endblock %}
