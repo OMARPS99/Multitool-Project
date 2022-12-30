@@ -1,13 +1,12 @@
 {% extends "layout.html" %}
 
-{% block title %} QR Code {% endblock %}
+{% block title %}QR Code{% endblock %}
 
-{% block link %} static/MultiTool.icon {% endblock %}
+{% block link %}static/MultiTool.icon{% endblock %}
 
-{% block class %} QR {% endblock %}
+{% block class %}QR{% endblock %}
 
 {% block body %}
-
 <br>
 <h1 class="text"> Convert Text and Links to QR Code </h1>
 <main class="container p-5 my-5 bg-info text-white">
@@ -40,8 +39,5 @@
                 <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
             </div>
         {% endif %}
-
-
 </main>
-
 {% endblock %}
