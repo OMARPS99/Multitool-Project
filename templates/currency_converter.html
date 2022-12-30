@@ -1,32 +1,25 @@
 {% extends "layout.html" %}
 
-{% block title %} Currency Converter {% endblock %}
+{% block title %}Currency Converter{% endblock %}
 
-{% block link %} static/MultiTool.icon {% endblock %}
+{% block link %}static/MultiTool.icon{% endblock %}
 
-{% block class %} currency {% endblock %}
+{% block class %}currency{% endblock %}
 
 {% block body %}
-
 <h1 class="text"> Currency Converter </h1>
 <main class="container p-5 my-5 bg-info text-white">
     <form action="/currency_converter" method="post">
         <div class="text">
         <div class="col p-3 bg-info text-white">
-            <select class="form-select mx-auto w-auto" name="from">
+            <select id="CurrenciesName" class="form-select mx-auto w-auto" name="from">
                 <option disabled selected>FROM</option>
-                {% for kye in names %}
-                    <option value="{{ kye }}">{{ kye }} - {{ names[kye] }}</option>
-                {% endfor %}
             </select>
         </div>
 
         <div class="col p-3 bg-info text-white">
-            <select class="form-select mx-auto w-auto" name="to">
+            <select id="CurrenciesName" class="form-select mx-auto w-auto" name="to">
                 <option disabled selected>TO</option>
-                {% for kye in names %}
-                    <option value="{{ kye }}">{{ kye }} - {{ names[kye] }}</option>
-                {% endfor %}
             </select>
         </div>
 
@@ -35,7 +28,7 @@
         </div>
         <br>
         <div class="text">
-            <button id="Exchange" class="btn btn-light" type="submit">Exchange</button>
+            <button id="button_opacity" class="btn btn-outline-danger text-white" type="submit">Exchange</button>
         </div>
     </form>
     {% if result %}
@@ -60,5 +53,4 @@
     </div>
     {% endif %}
 </main>
-
 {% endblock %}
