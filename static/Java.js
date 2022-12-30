@@ -108,7 +108,7 @@ switch (Page) {
         CopyText();
         break;
 }
-})
+});
 
 let Text = document.querySelector("#writing");
 let TextArray = ["We care about the customer", "We care about product quality",
@@ -152,5 +152,5 @@ let loader = document.getElementById("Page_loader");
 
 window.addEventListener("load", _ => {
     loader.style.display = "none";
-})
+});
  
