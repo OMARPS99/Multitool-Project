@@ -1,10 +1,10 @@
 {% extends "layout.html" %}
 
-{% block title %} Text encryption {% endblock %}
+{% block title %}Text encryption{% endblock %}
 
-{% block link %} static/MultiTool.icon {% endblock %}
+{% block link %}static/MultiTool.icon{% endblock %}
 
-{% block class %} caesar {% endblock %}
+{% block class %}caesar{% endblock %}
 
 {% block body %}
 
@@ -46,10 +46,10 @@
         <div id="button_opacity" class="mb-3">
             <h3 class="text"> your ciphertext </h3>
             <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
-            <textarea id="cipher" value="{{ cipher_text }}" rows="4" cols="50">{{ cipher_text }}</textarea>
+            <textarea id="Text" value="{{ cipher_text }}" rows="4" cols="50">{{ cipher_text }}</textarea>
             <br>
             <br>
-            <button onclick="myFunction()" id="button_opacity" class="btn btn-outline-danger text-white">Copy Text</button>
+            <button id="CopyButton" class="btn btn-outline-danger text-white">Copy Text</button>
         </div>
         {% endif %}
         
@@ -63,54 +63,4 @@
         <h6 class="text" style="text-align: left;"><a href="https://en.wikipedia.org/wiki/Caesar_cipher" target="_blank">More about the Caesar cipher</a></h6>
         <h6 class="text" style="text-align: left;"><a href="https://en.wikipedia.org/wiki/Substitution_cipher" target="_blank">More about the substitution cipher</a></h6>
 </main>
-
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-
-        let key = document.querySelector("#key");
-        let select = document.querySelector("#select");
-        let cipher_decrypt = document.querySelector("#cipher_decrypt");
-        
-        cipher_decrypt.style.display='none';
-        select.addEventListener('click', function() { 
-            if (select.value == "digital") {
-                document.querySelector('#feedback1').innerHTML = '&#9989;  You must enter a text and a numeric key.';
-                document.querySelector('#feedback2').innerHTML = '&#9989;  To decrypt the text with the key, enter the ciphertext and the key preceded by a negative sign (-).';
-                key.style.display='block';
-                cipher_decrypt.style.display='none';
-            }
-
-            else if (select.value == "letters") {
-                document.querySelector('#feedback1').innerHTML = '&#9989;  You must enter text and a key of 26 uppercase or lowercase characters must be entered without repetition.';
-                document.querySelector('#feedback2').innerHTML = '';
-                key.style.display='block';
-                cipher_decrypt.style.display='block';
-            }
-
-            else if (select.value == "digital_decoding") {
-                document.querySelector('#feedback1').innerHTML = '&#9888;  Decryption only if the cipher used was Caesar digital cipher.';
-                document.querySelector('#feedback2').innerHTML = '&#9888;  Text less than 140 characters, 23 words or close to two sentences is difficult to decipher, it depends on the context and the length of the words.';
-                key.style.display='none';
-                cipher_decrypt.style.display='none';
-            }
-
-            else {
-                document.querySelector('#feedback1').innerHTML = '';
-                document.querySelector('#feedback2').innerHTML = '';
-                key.style.display='block';
-                cipher_decrypt.style.display='none';
-            }
-        });
-});
-
-function myFunction() {
-        var copyText = document.getElementById("cipher");
-        copyText.select();
-        copyText.setSelectionRange(0, 99999);
-        navigator.clipboard.writeText(copyText.value);
-        ("Copied the text: " + copyText.value);
-        }
-
-</script>
-
 {% endblock %}
