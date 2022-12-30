@@ -1,13 +1,12 @@
 {% extends "layout.html" %}
 
-{% block title %} URL Click Counter {% endblock %}
+{% block title %}URL Click Counter{% endblock %}
 
-{% block link %} static/MultiTool.icon {% endblock %}
+{% block link %}static/MultiTool.icon{% endblock %}
 
-{% block class %} url_shortener {% endblock %}
+{% block class %}url_click_counter{% endblock %}
 
 {% block body %}
-
 <br>
 <h1 class="text"> The number of clicks on your URL </h1>
 <main class="container p-5 my-5 bg-info text-white">
@@ -34,5 +33,4 @@
     {% endif %}
 
 </main>
-
 {% endblock %}
