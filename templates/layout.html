@@ -14,7 +14,6 @@
         <!-- https://favicon.io/emoji-favicons/money-bag/ -->
 
         <link href="/static/styles.css" rel="stylesheet">
-
         <title>{% block title %}{% endblock %}</title>
 
         <link rel="icon" href="{% block link %}{% endblock %}">
@@ -34,7 +33,7 @@
         </nav>
 
         {% block body %}{% endblock %}
-
+        <span id="writing" class="font-monospace"></span><span class="cursor">&#8889;</span>
         <footer>
         <div>
             <div>© 2022 MultiTool</div>
@@ -47,5 +46,6 @@
                 </ul>
             </div>
         </footer>
+        <script type="module" src="./static/java.js"></script>
     </body>
 </html>
