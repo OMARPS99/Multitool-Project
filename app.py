@@ -8,7 +8,7 @@ import os
 import re
 
 
-from helpers import currency_names, convert, usd, caesar_digital, caesar_letters, check_letter_keys, hash_URL, caeser_digital_decoding, check_counter, check_url, check_email, Check_For_Inappropriate_Words
+from helpers import ConvertCurrencies, CurrencySupplyChangeToUsd, CaesarDigital, CaesarLetters, CheckLetterKeys, HashURL, CaeserDigitalDecoding, CheckCounterURL, CheckURL, CheckEmail, CheckForInappropriateWords
 
 app = Flask(__name__)
 
@@ -16,7 +16,7 @@ app = Flask(__name__)
 load_dotenv()
 
 app.config["TEMPLATES_AUTO_RELOAD"] = True
-app.jinja_env.filters["usd"] = usd
+app.jinja_env.filters["usd"] = CurrencySupplyChangeToUsd
 
 # Enter mail and server information.
 app.config["MAIL_SERVER"] = "smtp.gmail.com"
@@ -53,25 +53,25 @@ def url_shortener():
 
         long_url = request.form.get("long_url").replace(" ", "")
 
-        if long_url and check_url(long_url):
+        if long_url and CheckURL(long_url):
 
             cr.execute("SELECT short_url FROM url WHERE long_url = ?", (long_url,))
 
             found = cr.fetchone()
 
             if found:
-                return render_template("url_shortener.html", short_url=found[0], QR_URL=f"https://multitool-cs50.herokuapp.com/{found[0]}")
+                return render_template("url_shortener.html", short_url=found[0], QR_URL=f"https://Example.com/{found[0]}")
                 
             cr.execute(" SELECT counter, counter_status FROM counter_manager WHERE id_counter = ?", ('1',) )
 
             results = cr.fetchall()
 
-            CheckCounter = check_counter(results[0][0], results[0][1]) 
+            CheckCounter = CheckCounterURL(results[0][0], results[0][1]) 
 
             if CheckCounter:
                 cr.execute("BEGIN TRANSACTION")
 
-                short_url = hash_URL(int(results[0][0]) + 1)
+                short_url = HashURL(int(results[0][0]) + 1)
                 cr.execute("INSERT INTO url (long_url, short_url, counter) values(?, ?, '1')", (long_url, short_url))
 
                 counter = str(int(results[0][0])+1)
@@ -80,7 +80,7 @@ def url_shortener():
 
                 cr.execute("COMMIT")
 
-                return render_template("url_shortener.html", short_url=short_url, QR_URL=f"https://multitool-cs50.herokuapp.com/{short_url}")
+                return render_template("url_shortener.html", short_url=short_url, QR_URL=f"https://Example.com/{short_url}")
                 
             else:
                 return render_template("url_shortener.html", error_counter="1")
@@ -113,9 +113,9 @@ def click_counter():
 
         short_url = request.form.get("short_url")
 
-        if check_url(short_url) and short_url:
+        if CheckURL(short_url) and short_url:
 
-            short_re = re.split(r"https://multitool-cs50.herokuapp.com/", short_url)
+            short_re = re.split(r"https://Example.com/", short_url)
 
             # The URL is cut to extract the link code from the database.
             # Returns a first element means that the link is not a valid split.
@@ -146,7 +146,7 @@ def currency_converter():
         if not from_ or not To or not amount or amount.isdigit() == False or int(amount) < 1:
             return render_template("currency_converter.html", error="Input error")
 
-        result = convert(from_, To, amount)
+        result = ConvertCurrencies(from_, To, amount)
 
         if result == None:
             return render_template("currency_converter.html", error="Invalid currency symbol")
@@ -186,25 +186,25 @@ def caesar():
         if Encryption_type == "digital":
             try:
                 if int(key) and text:
-                    return render_template("caesar.html", cipher_text=caesar_digital(key, text))
+                    return render_template("caesar.html", cipher_text=CaesarDigital(key, text))
                     
             except:
                 return render_template("caesar.html", error="Error: You must enter a text and a numeric key")
 
         if Encryption_type == "letters":
 
-            if not text or not cipher_decrypt or check_letter_keys(key):
+            if not text or not cipher_decrypt or CheckLetterKeys(key):
                 return render_template("caesar.html",
                   error="Error: You must enter text, specify the type of operation and enter a character key of at least 26 characters and not more, and the character must not be repeated Example: JTrEKyAVOgDXPSnCUIZLFbMWhQ")
 
-            return render_template("caesar.html", cipher_text=caesar_letters(key, text, cipher_decrypt))
+            return render_template("caesar.html", cipher_text=CaesarLetters(key, text, cipher_decrypt))
             
         if Encryption_type == "digital_decoding":
             
             if not text:
                 return render_template("caesar.html", error="Error: You must enter a Ciphertext")
 
-            return render_template("caesar.html", cipher_text=caesar_digital(caeser_digital_decoding(text), text))
+            return render_template("caesar.html", cipher_text=CaesarDigital(CaeserDigitalDecoding(text), text))
 
         else:
             return render_template("caesar.html", error="Error: 418 &#128588;")
@@ -222,7 +222,7 @@ def contact():
         sub = request.form.get("subject")
         msg = request.form.get("message")
 
-        if int(request.form.get("answer")) != int(request.form.get("correct_answer")) or not name or not email or not msg or not sub or check_email(email) or Check_For_Inappropriate_Words(msg, name, email, sub ,country):
+        if int(request.form.get("answer")) != int(request.form.get("correct_answer")) or not name or not email or not msg or not sub or CheckEmail(email) or CheckForInappropriateWords(msg, name, email, sub ,country):
             return render_template("error_page.html", error_message="1")
 
         # send email
@@ -235,5 +235,4 @@ def contact():
 @app.context_processor
 def context_processor():
     # global variables
-    return dict(names=currency_names(1), country=currency_names("country"), number1=randrange(1, 20), number2=randrange(1, 20)
-)
+    return dict( number1=randrange(1, 20), number2=randrange(1, 20) )
