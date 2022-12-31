@@ -36,10 +36,8 @@
         {% set temporary_variable = result.amount/result.amount_total %}
         <h3> ${{ amount }} {{ From }} = </h3>
         <h3> {{ result.amount_total | usd }} {{ To }}</h3>
-        <br>
         <h4> 1 {{ From }} = {{ result.to | usd }} {{ To }}</h4>
         <h4> 1 {{ To }} = {{ temporary_variable | usd }} {{ From }}</h4>
-        <br>
         <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
     </div>
     {% endif%}
