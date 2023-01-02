@@ -110,44 +110,6 @@ switch (Page) {
 }
 });
 
-let Text = document.querySelector("#writing");
-let TextArray = ["We care about the customer", "We care about product quality",
- "We are trustworthy", "All rights are save", "Do not hesitate to contact us"];
-
-let TextIndex = 0;
-let CharIndex = 0;
-
-function Typing() {
-    if (CharIndex < TextArray[TextIndex].length) {
-        Text.textContent += TextArray[TextIndex].charAt(CharIndex);
-        CharIndex++;
-        setTimeout(Typing, 200);
-    }
-    else {
-        setTimeout(Erasing, 2000);
-    }
-}
-
-function Erasing() {
-    if (CharIndex > 0)
-    {
-        Text.textContent = TextArray[TextIndex].substring(0, CharIndex -1);
-        CharIndex--;
-        setTimeout(Erasing, 100);
-    }
-    else
-    {
-        TextIndex++;
-        if (TextIndex >= TextArray.length)
-        {
-            TextIndex = 0;
-        }
-        setTimeout(Typing, 1500);
-    }
-}
-
-setTimeout(Typing, 2000);
-
 let loader = document.getElementById("Page_loader");
 
 window.addEventListener("load", _ => {
